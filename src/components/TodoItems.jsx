@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react';
 import tick from '../assets/tick.png';
 import not_tick from '../assets/not_tick.png';
@@ -72,6 +73,9 @@ const TodoItems = ({ refreshTodos }) => {
       if (!response.ok) throw new Error('Failed to delete todo');
 
       setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+      setTimeout(() => {
+        fetchTodos();
+      }, 500);
     } catch (error) {
       console.error("Error deleting todo:", error);
       setError("Could not delete todo. Please try again.");
